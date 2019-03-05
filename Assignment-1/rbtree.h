@@ -22,7 +22,6 @@ class RBtree
   public:
     RBtree()
     {
-        q = NULL;
         root = NULL;
     }
     void insert(int);
