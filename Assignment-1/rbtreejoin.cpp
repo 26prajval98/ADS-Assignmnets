@@ -31,6 +31,9 @@ RBtree joinRBtrees2to1(RBtree tree1, RBtree tree2){
     t1_s->parent = p;
     t2_s->parent = p;
 
+    if(pp == NULL)
+        p->color = 'b';
+        
     RBtree tree3(tree1.root);
     return tree3;
 }
@@ -52,6 +55,7 @@ RBtree joinRBtrees1to2(RBtree tree1, RBtree tree2){
     }
 
     node * pp = t2_s->parent;
+    
     node * p = new node;
 
     p->key = val;
@@ -63,6 +67,9 @@ RBtree joinRBtrees1to2(RBtree tree1, RBtree tree2){
     pp->left = p;
     t1_s->parent = p;
     t2_s->parent = p;
+
+    if(pp == NULL)
+        p->color = 'b';
 
     RBtree tree3(tree2.root);
     return tree3;
