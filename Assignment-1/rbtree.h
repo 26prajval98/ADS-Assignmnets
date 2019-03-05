@@ -16,14 +16,19 @@ struct node
 
 class RBtree
 {
-    node *root;
-    node *q;
-
   public:
+
+    node *root;
+    
     RBtree()
     {
         root = NULL;
     }
+
+    RBtree(node * x){
+        root = x;
+    }
+
     void insert(int);
     void insertfix(node *);
     void leftrotate(node *);
@@ -34,7 +39,10 @@ class RBtree
     void disp();
     void display(node *);
     void search(int);
-    int black_height(node *);
+    int min();
+    int max();
 };
+
+int black_height(node *);
 
 #endif

@@ -327,6 +327,7 @@ void RBtree::disp()
 {
     display(root);
 }
+
 void RBtree::display(node *p)
 {
     if (p == NULL || root == NULL)
@@ -335,7 +336,7 @@ void RBtree::display(node *p)
     }
     if (p != NULL)
     {
-        cout << "( " << p->key << ", " << p->color << ")";
+        cout << "( " << p->key << ", " << p->color << ") ";
         display(p->left);
         display(p->right);
     }
@@ -388,7 +389,25 @@ void RBtree::search(int x)
     }
 }
 
-int RBtree::black_height(node *x)
+int RBtree::min()
+{
+    node * t = root;
+    while(t->left!=NULL){
+        t = t->left;
+    }
+    return t->key;
+}
+
+int RBtree::max()
+{
+    node * t = root;
+    while(t->right!=NULL){
+        t = t->right;
+    }
+    return t->key;
+}
+
+int black_height(node *x)
 {
     if (x == NULL)
         return 0;
