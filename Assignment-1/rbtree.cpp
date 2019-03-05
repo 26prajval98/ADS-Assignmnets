@@ -1,38 +1,8 @@
 #include <iostream>
+#include "rbtree.h"
 
 using namespace std;
 
-struct node
-{
-    int key;
-    node *parent;
-    char color;
-    node *left;
-    node *right;
-};
-
-class RBtree
-{
-    node *root;
-    node *q;
-
-  public:
-    RBtree()
-    {
-        q = NULL;
-        root = NULL;
-    }
-    void insert(int);
-    void insertfix(node *);
-    void leftrotate(node *);
-    void rightrotate(node *);
-    void del(int);
-    node *successor(node *);
-    void delfix(node *);
-    void disp();
-    void display(node *);
-    void search(int);
-};
 void RBtree::insert(int z)
 {
     int i = 0;
@@ -158,31 +128,10 @@ void RBtree::del(int x)
     }
     if (found == 0)
     {
-        cout << "\nElement Not Found.";
         return;
     }
     else
     {
-        cout << "\nDeleted Element: " << p->key;
-        cout << "\nColour: ";
-        if (p->color == 'b')
-            cout << "Black\n";
-        else
-            cout << "Red\n";
-
-        if (p->parent != NULL)
-            cout << "\nParent: " << p->parent->key;
-        else
-            cout << "\nThere is no parent of the node.  ";
-        if (p->right != NULL)
-            cout << "\nRight Child: " << p->right->key;
-        else
-            cout << "\nThere is no right child of the node.  ";
-        if (p->left != NULL)
-            cout << "\nLeft Child: " << p->left->key;
-        else
-            cout << "\nThere is no left child of the node.  ";
-        cout << "\nNode Deleted.";
         if (p->left == NULL || p->right == NULL)
             y = p;
         else
