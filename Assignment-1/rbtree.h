@@ -34,6 +34,7 @@ class RBtree
     void disp();
     void display(node *);
     void search(int);
+    int black_height(node *);
 };
 
 #endif

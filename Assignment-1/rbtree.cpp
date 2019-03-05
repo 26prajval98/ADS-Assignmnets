@@ -3,6 +3,14 @@
 
 using namespace std;
 
+int max(int a, int b)
+{
+    if (a > b)
+        return a;
+    else
+        return b;
+}
+
 void RBtree::insert(int z)
 {
     int i = 0;
@@ -379,6 +387,17 @@ void RBtree::search(int x)
         cout << endl;
     }
 }
+
+int RBtree::black_height(node *x)
+{
+    if (x == NULL)
+        return 0;
+    else if (x->color == 'b')
+        return 1 + max(black_height(x->left), black_height(x->right));
+    else
+        return max(black_height(x->left), black_height(x->right));
+};
+
 int main()
 {
     int ch, y = 0;
