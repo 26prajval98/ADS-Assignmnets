@@ -17,19 +17,19 @@ RBtree joinRBtrees2to1(RBtree tree1, RBtree tree2){
         t1_s = t1_s->right;
     }
 
-    node * p = t1_s->parent;
+    node * pp = t1_s->parent;
 
-    node * pp = new node;
+    node * p = new node;
 
-    pp->key = val;
-    pp->parent = p;
-    pp->color = 'r';
-    pp->left = t1_s;
-    pp->right = t2_s;
+    p->key = val;
+    p->parent = pp;
+    p->color = 'r';
+    p->left = t1_s;
+    p->right = t2_s;
 
-    p->right = pp;
-    t1_s->parent = pp;
-    t2_s->parent = pp;
+    pp->right = p;
+    t1_s->parent = p;
+    t2_s->parent = p;
 
     RBtree tree3(tree1.root);
     return tree3;
@@ -51,18 +51,18 @@ RBtree joinRBtrees1to2(RBtree tree1, RBtree tree2){
         t2_s = t2_s->left;
     }
 
-    node * p = t2_s->parent;
-    node * pp = new node;
+    node * pp = t2_s->parent;
+    node * p = new node;
 
-    pp->key = val;
-    pp->parent = p;
-    pp->color = 'r';
-    pp->left = t1_s;
-    pp->right = t2_s;
+    p->key = val;
+    p->parent = pp;
+    p->color = 'r';
+    p->left = t1_s;
+    p->right = t2_s;
 
-    p->left = pp;
-    t1_s->parent = pp;
-    t2_s->parent = pp;
+    pp->left = p;
+    t1_s->parent = p;
+    t2_s->parent = p;
 
     RBtree tree3(tree2.root);
     return tree3;
