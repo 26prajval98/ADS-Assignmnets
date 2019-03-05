@@ -416,20 +416,3 @@ int black_height(node *x)
     else
         return max(black_height(x->left), black_height(x->right));
 };
-
-int main()
-{
-    int ch, y = 0;
-    RBtree tree;
-    tree.insert(7);
-    tree.insert(3);
-    tree.insert(18);
-    tree.insert(10);
-    tree.insert(22);
-    tree.insert(8);
-    tree.insert(11);
-    tree.insert(26);
-    tree.del(18);
-    tree.disp();
-    return 1;
-}
