@@ -341,53 +341,6 @@ void RBtree::display(node *p)
         display(p->right);
     }
 }
-void RBtree::search(int x)
-{
-    if (root == NULL)
-    {
-        cout << "\nEmpty Tree\n";
-        return;
-    }
-    node *p = root;
-    int found = 0;
-    while (p != NULL && found == 0)
-    {
-        if (p->key == x)
-            found = 1;
-        if (found == 0)
-        {
-            if (p->key < x)
-                p = p->right;
-            else
-                p = p->left;
-        }
-    }
-    if (found == 0)
-        cout << "\nElement Not Found.";
-    else
-    {
-        cout << "\n\t FOUND NODE: ";
-        cout << "\n Key: " << p->key;
-        cout << "\n Colour: ";
-        if (p->color == 'b')
-            cout << "Black";
-        else
-            cout << "Red";
-        if (p->parent != NULL)
-            cout << "\n Parent: " << p->parent->key;
-        else
-            cout << "\n There is no parent of the node.  ";
-        if (p->right != NULL)
-            cout << "\n Right Child: " << p->right->key;
-        else
-            cout << "\n There is no right child of the node.  ";
-        if (p->left != NULL)
-            cout << "\n Left Child: " << p->left->key;
-        else
-            cout << "\n There is no left child of the node.  ";
-        cout << endl;
-    }
-}
 
 int RBtree::min()
 {

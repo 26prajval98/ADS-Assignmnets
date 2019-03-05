@@ -20,10 +20,6 @@ RBtree joinRBtrees2to1(RBtree tree1, RBtree tree2, int val){
         }
     }
 
-    t1_s = t1_s->parent;
-
-    cout << t1_s->key << endl;
-
     node * pp = t1_s->parent;
 
     node * p = new node;
@@ -38,6 +34,8 @@ RBtree joinRBtrees2to1(RBtree tree1, RBtree tree2, int val){
     t1_s->parent = p;
     t2_s->parent = p;
 
+    tree1.insertfix(p);
+    
     if(pp == NULL)
         p->color = 'b';
 
@@ -64,7 +62,6 @@ RBtree joinRBtrees1to2(RBtree tree1, RBtree tree2, int val){
         }
     }
 
-    t2_s = t2_s->parent;
     node * pp = t2_s->parent;
     
     node * p = new node;
@@ -78,6 +75,8 @@ RBtree joinRBtrees1to2(RBtree tree1, RBtree tree2, int val){
     pp->left = p;
     t1_s->parent = p;
     t2_s->parent = p;
+
+    tree2.insertfix(p);
 
     if(pp == NULL)
         p->color = 'b';
@@ -136,6 +135,7 @@ int main()
 
     cout << endl;
 
+    cout << "Done" << endl;
     RBtree tree3 = join(tree1, tree2);
 
     tree3.disp();
