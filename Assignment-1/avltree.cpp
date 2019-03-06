@@ -8,7 +8,7 @@ Node *createNode(int data)
     temp->right = NULL;
     return temp;
 }
-int AVLtree::findHeight(Node *root)
+int findHeight(Node *root)
 {
     if (root == NULL)
         return 0;
@@ -16,32 +16,41 @@ int AVLtree::findHeight(Node *root)
         return max(findHeight(root->left), findHeight(root->right)) + 1;
 }
 
-int AVLtree::getBalance(Node *root)
+int getBalance(Node *root)
 {
     return findHeight(root->left) - findHeight(root->right);
 }
 
-int AVLtree::findMin(Node *root)
-{
-    while (root->left != NULL)
+int findMin(Node * temp)
+{   
+    while (temp->left != NULL)
     {
-        root = root->left;
+        temp = temp->left;
     }
-    //printf("test - %d",root->data);
-    return root->data;
+    return temp->data;
 }
 
-int AVLtree::findMax(Node *root)
-{
-    while (root->right != NULL)
+int AVLtree::findMin()
+{   
+    Node * temp = root;
+    while (temp->left != NULL)
     {
-        root = root->right;
+        temp = temp->left;
     }
-    //printf("test - %d",root->data);
-    return root->data;
+    return temp->data;
 }
 
-Node *AVLtree::leftRotate(Node *root)
+int AVLtree::findMax()
+{   
+    Node * temp = root;
+    while (temp->right != NULL)
+    {
+        temp = temp->right;
+    }
+    return temp->data;
+}
+
+Node *leftRotate(Node *root)
 {
     Node *temp = root;
     root = root->right;
@@ -50,7 +59,7 @@ Node *AVLtree::leftRotate(Node *root)
     return root;
 }
 
-Node *AVLtree::rightRotate(Node *root)
+Node *rightRotate(Node *root)
 {
     Node *temp = root;
     root = root->left;
@@ -59,7 +68,7 @@ Node *AVLtree::rightRotate(Node *root)
     return root;
 }
 
-Node *AVLtree::AVLInsert(Node *root, int data)
+Node *AVLtree::insert(Node *root, int data)
 {
     if (root == NULL)
     {
@@ -69,11 +78,11 @@ Node *AVLtree::AVLInsert(Node *root, int data)
     {
         if (data > root->data)
         {
-            root->right = AVLInsert(root->right, data);
+            root->right = insert(root->right, data);
         }
         else
         {
-            root->left = AVLInsert(root->left, data);
+            root->left = insert(root->left, data);
         }
     }
     int balance = findHeight(root->left) - findHeight(root->right);
@@ -104,7 +113,7 @@ Node *AVLtree::AVLInsert(Node *root, int data)
     return root;
 }
 
-Node *AVLtree::delNode(Node *root, int data)
+Node *AVLtree::del(Node *root, int data)
 {
     if (root == NULL)
     {
@@ -114,11 +123,11 @@ Node *AVLtree::delNode(Node *root, int data)
     {
         if (data < root->data)
         {
-            root->left = delNode(root->left, data);
+            root->left = del(root->left, data);
         }
         else if (root->data < data)
         {
-            root->right = delNode(root->right, data);
+            root->right = del(root->right, data);
         }
         else
         {
@@ -141,9 +150,9 @@ Node *AVLtree::delNode(Node *root, int data)
             }
             else
             {
-                int min = findMin(root->right);
+                int min = M::findMin(root->right);
                 root->data = min;
-                root->right = delNode(root->right, min);
+                root->right = del(root->right, min);
             }
         }
     }
@@ -181,12 +190,16 @@ Node *AVLtree::delNode(Node *root, int data)
     return root;
 }
 
-void AVLtree::printInorder(Node *root)
+Node *AVLtree::getRoot(){
+    return root;
+}
+
+void AVLtree::disp(Node *root)
 {
     if (root != NULL)
     {
-        printInorder(root->left);
         printf("(%d,%d)", root->data, findHeight(root));
-        printInorder(root->right);
+        disp(root->left);
+        disp(root->right);
     }
 }

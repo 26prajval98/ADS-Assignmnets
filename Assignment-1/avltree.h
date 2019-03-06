@@ -1,10 +1,12 @@
+#ifndef AVL_TREE
+#define AVL_TREE
+
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef struct node
 {
 	int data;
-	int height;
 	struct node *left;
 	struct node *right;
 } Node;
@@ -31,14 +33,22 @@ class AVLtree
 		root = t;
 	}
 
-	int findHeight(Node *);
-	int getBalance(Node *root);
-	int findMin(Node *root);
-	int findMax(Node *root);
-	Node *leftRotate(Node *root);
-	Node *rightRotate(Node *root);
-	Node *AVLInsert(Node *root, int data);
-	Node *delNode(Node *root, int data);
-	Node *_get_printf_count_output(Node *);
-	void printInorder(Node *root);
+	Node *insert(Node *root, int data);
+	Node *del(Node *root, int data);
+	Node *getRoot();
+	int findMin();
+	int findMax();
+	void disp(Node *root);
 };
+
+namespace M
+{
+	int findMin(Node *);
+}
+
+int findHeight(Node *);
+int getBalance(Node *root);
+Node *leftRotate(Node *root);
+Node *rightRotate(Node *root);
+
+#endif
