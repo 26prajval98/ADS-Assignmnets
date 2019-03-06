@@ -134,7 +134,7 @@ RBtree join(RBtree tree1, RBtree tree2)
 
 vector<int> read_input(string filename)
 {
-    ifstream file(filename);
+    ifstream file(filename.c_str());
     vector<int> A;
     int a;
     while(file >> a){
@@ -149,7 +149,8 @@ int main()
     int ch, y = 0;
     vector <int> itr;
     RBtree tree1;
-    itr = read_input("tree1.txt");
+    string file1 = "tree1.txt", file2 = "tree2.txt";
+    itr = read_input(file1);
     for(int i=0; i < itr.size(); i++)
         tree1.insert(itr[i]);
     // tree1.insert(7);
@@ -165,7 +166,7 @@ int main()
     cout << endl;
 
     RBtree tree2;
-    itr = read_input("tree2.txt");
+    itr = read_input(file2);
     for(int i=0; i < itr.size(); i++)
         tree2.insert(itr[i]);
     // tree2.insert(100);
