@@ -11,14 +11,6 @@ typedef struct node
 	struct node *right;
 } Node;
 
-int max(int a, int b)
-{
-	if (a > b)
-		return a;
-	else
-		return b;
-}
-
 class AVLtree
 {
   public:
@@ -41,11 +33,7 @@ class AVLtree
 	void disp(Node *root);
 };
 
-namespace M
-{
-	int findMin(Node *);
-}
-
+int findMini(Node *);
 int findHeight(Node *);
 int getBalance(Node *root);
 Node *leftRotate(Node *root);

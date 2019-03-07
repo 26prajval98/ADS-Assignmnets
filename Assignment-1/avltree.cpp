@@ -1,4 +1,8 @@
 #include "avltree.h"
+#include <algorithm>
+#include <iostream>
+
+using namespace std;
 
 Node *createNode(int data)
 {
@@ -13,7 +17,7 @@ int findHeight(Node *root)
     if (root == NULL)
         return 0;
     else
-        return max(findHeight(root->left), findHeight(root->right)) + 1;
+        return std::max(findHeight(root->left), findHeight(root->right)) + 1;
 }
 
 int getBalance(Node *root)
@@ -21,8 +25,8 @@ int getBalance(Node *root)
     return findHeight(root->left) - findHeight(root->right);
 }
 
-int findMin(Node * temp)
-{   
+int findMini(Node *temp)
+{
     while (temp->left != NULL)
     {
         temp = temp->left;
@@ -31,8 +35,8 @@ int findMin(Node * temp)
 }
 
 int AVLtree::findMin()
-{   
-    Node * temp = root;
+{
+    Node *temp = root;
     while (temp->left != NULL)
     {
         temp = temp->left;
@@ -41,8 +45,8 @@ int AVLtree::findMin()
 }
 
 int AVLtree::findMax()
-{   
-    Node * temp = root;
+{
+    Node *temp = root;
     while (temp->right != NULL)
     {
         temp = temp->right;
@@ -88,7 +92,7 @@ Node *AVLtree::insert(Node *root, int data)
     int balance = findHeight(root->left) - findHeight(root->right);
     if (balance > 1)
     {
-        if (data < root->data)
+        if (data < root->left->data)
         {
             root = rightRotate(root);
         }
@@ -100,7 +104,7 @@ Node *AVLtree::insert(Node *root, int data)
     }
     else if (balance < -1)
     {
-        if (data > root->data)
+        if (data > root->right->data)
         {
             root = leftRotate(root);
         }
@@ -109,6 +113,7 @@ Node *AVLtree::insert(Node *root, int data)
             root->right = rightRotate(root->right);
             root = leftRotate(root);
         }
+        int balance = findHeight(root->left) - findHeight(root->right);
     }
     return root;
 }
@@ -150,7 +155,7 @@ Node *AVLtree::del(Node *root, int data)
             }
             else
             {
-                int min = M::findMin(root->right);
+                int min = findMini(root->right);
                 root->data = min;
                 root->right = del(root->right, min);
             }
@@ -159,7 +164,6 @@ Node *AVLtree::del(Node *root, int data)
     if (root != NULL)
     {
         int balance = findHeight(root->left) - findHeight(root->right);
-        printf("%d\n", balance);
         if (balance > 1)
         {
             int balance2 = getBalance(root->left);
@@ -190,7 +194,8 @@ Node *AVLtree::del(Node *root, int data)
     return root;
 }
 
-Node *AVLtree::getRoot(){
+Node *AVLtree::getRoot()
+{
     return root;
 }
 

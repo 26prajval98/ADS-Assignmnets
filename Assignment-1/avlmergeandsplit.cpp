@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "AVLtree.h"
+#include "avltree.h"
 
 using namespace std;
 
@@ -38,9 +38,12 @@ AVLtree joinAVLtrees2to1(AVLtree tree1, AVLtree tree2, int val)
 
 AVLtree joinAVLtrees1to2(AVLtree tree1, AVLtree tree2, int val)
 {
-    if(tree2.root == NULL)
-        return;
-        
+    if (tree2.root == NULL)
+    {
+        AVLtree tree3(tree2.root);
+        return tree3;
+    }
+
     node *t1_s = tree1.root;
     node *t2_s = tree2.root->left;
     node *t2_s_parent = tree2.root;
@@ -61,6 +64,9 @@ AVLtree joinAVLtrees1to2(AVLtree tree1, AVLtree tree2, int val)
 
     pp->left = p;
 
+    tree1.disp(pp);
+    cout << endl;
+
     if (getBalance(t2_s_parent) > 1)
     {
         rightRotate(t2_s_parent);
@@ -77,14 +83,16 @@ AVLtree join_t1st2(AVLtree tree1, AVLtree tree2)
     node *t2_s = tree2.root;
     int val = tree1.findMax();
 
-    tree1.del(tree1.getRoot(), val);
+    tree1.root = tree1.del(tree1.getRoot(), val);
 
     if (findHeight(t1_s) > findHeight(t2_s))
     {
         return joinAVLtrees2to1(tree1, tree2, val);
     }
     else
+    {
         return joinAVLtrees1to2(tree1, tree2, val);
+    }
 }
 
 AVLtree join(AVLtree tree1, AVLtree tree2)
@@ -104,7 +112,8 @@ vector<int> read_input(string filename)
     ifstream file(filename.c_str());
     vector<int> A;
     int a;
-    while(file >> a){
+    while (file >> a)
+    {
         A.push_back(a);
     }
 
@@ -114,12 +123,14 @@ vector<int> read_input(string filename)
 int main()
 {
     int ch, y = 0;
-    vector <int> itr;
+    vector<int> itr;
     AVLtree tree1;
     string file1 = "tree1.txt", file2 = "tree2.txt";
     itr = read_input(file1);
-    for(int i=0; i < itr.size(); i++)
-        tree1.insert(tree1.getRoot(), itr[i]);
+    for (int i = 0; i < itr.size(); i++)
+    {
+        tree1.root = tree1.insert(tree1.getRoot(), itr[i]);
+    }
     // tree1.insert(7);
     // tree1.insert(3);
     // tree1.insert(18);
@@ -134,13 +145,14 @@ int main()
 
     AVLtree tree2;
     itr = read_input(file2);
-    for(int i=0; i < itr.size(); i++)
-        tree2.insert(tree2.getRoot(), itr[i]);
-    // tree2.insert(100);
-    // tree2.insert(90);
-    // tree2.insert(120);
+    for (int i = 0; i < itr.size(); i++)
+    {
+        tree2.root = tree2.insert(tree2.getRoot(), itr[i]);
+    }
+    // // tree2.insert(100);
+    // // tree2.insert(90);
+    // // tree2.insert(120);
     tree2.disp(tree2.getRoot());
-
     cout << endl;
 
     AVLtree tree3 = join(tree1, tree2);
