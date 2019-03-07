@@ -5,7 +5,13 @@
 
 using namespace std;
 
-Node * AVLise(Node *root, int data)
+typedef struct splt
+{
+    Node *tree1;
+    Node *tree2;
+} Split;
+
+Node *AVLise(Node *root, int data)
 {
     int balance = getBalance(root);
     if (balance > 1)
@@ -65,22 +71,71 @@ Node *join(Node *tree1, Node *tree2)
     Node *t2_s = tree2;
     int val;
 
-    if(tree1 != NULL){
+    if (tree1 != NULL)
+    {
         val = findMax(tree1);
         tree1 = delNode(tree1, val);
     }
-    else if(tree2 != NULL){
+    else if (tree2 != NULL)
+    {
         val = findMin(tree2);
         tree2 = delNode(tree2, val);
     }
-    else{
+    else
+    {
         return NULL;
     }
-    
+
     // Assuming tree1 has all elements smaller than tree2
     Node *tree3 = jointrees(tree1, tree2, val);
 
     return tree3;
+}
+
+Split *split(Node *tree, int key)
+{
+    Split *temp = new Split;
+    temp->tree1 = NULL;
+    temp->tree2 = NULL;
+
+    if (tree == NULL)
+    {
+        return temp;
+    }
+
+    if (tree->data < key)
+    {
+        int val = tree->data;
+        Node *temp_tree = tree->left;
+        temp = split(tree->right, key);
+        temp_tree = AVLInsert(temp_tree, val);
+        temp->tree1 = join(temp_tree, temp->tree1);
+        return temp;
+    }
+    else if (tree->data > key)
+    {
+        int val = tree->data;
+        Node *temp_tree = tree->right;
+        temp = split(tree->left, key);
+        temp_tree = AVLInsert(temp_tree, val);
+        temp->tree2 = join(temp_tree, temp->tree2);
+        return temp;
+    }
+    else
+    {
+        temp->tree1 = tree->left;
+        temp->tree2 = tree->right;
+        display(temp->tree1);
+        cout << endl;
+        return temp;
+    }
+}
+
+Split * splitinto(Node * tree, int val){
+    tree = AVLInsert(tree, val);
+    // display(tree);
+    cout << endl;
+    return split(tree, val);
 }
 
 vector<int> read_input(string filename)
@@ -105,7 +160,7 @@ int main()
     itr = read_input(file1);
     for (int i = 0; i < itr.size(); i++)
     {
-        // tree1 = AVLInsert(tree1, itr[i]);
+        tree1 = AVLInsert(tree1, itr[i]);
     }
     // tree1.insert(7);
     // tree1.insert(3);
@@ -135,6 +190,16 @@ int main()
     cout << "Done" << endl;
 
     display(tree3);
+    cout << endl;
+    cout << endl;
+
+    Split * splittrees = splitinto(tree3, 100);
+
+    display(splittrees->tree1);
+    cout << endl;
+
+    display(splittrees->tree2);
+    cout << endl;
 
     return 0;
 }
