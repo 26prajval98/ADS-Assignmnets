@@ -5,94 +5,7 @@
 
 using namespace std;
 
-Node *joinAVLtrees2to1(Node *tree1, Node *tree2, int val)
-{
-    Node *t1_s = tree1;
-    Node *t1_s_parent = new Node;
-    Node *t2_s = tree2;
-
-    t1_s_parent->right = t1_s;
-
-    while (findHeight(t1_s) > findHeight(t2_s))
-    {
-        t1_s_parent = t1_s_parent->right;
-        t1_s = t1_s->right;
-    }
-
-    Node *pp = t1_s_parent;
-
-    Node *p = new node;
-
-    p->data = val;
-    p->left = t1_s;
-    p->right = t2_s;
-
-    pp->right = p;
-
-    if (getBalance(pp) < -1)
-    {
-        t1_s_parent = leftRotate(pp);
-    }
-
-    Node *tree3 = tree1;
-    return tree3;
-}
-
-Node *joinAVLtrees1to2(Node *tree1, Node *tree2, int val)
-{
-    if (tree2 == NULL)
-    {
-        return NULL;
-    }
-
-    Node *t1_s = tree1;
-    Node *t2_s = tree2;
-    Node *tree3;
-    Node *t2_s_parent = new Node;
-
-    t2_s_parent->left = t2_s;
-
-    while (findHeight(t1_s) < findHeight(t2_s))
-    {
-        t2_s = t2_s->left;
-        t2_s_parent = t2_s_parent->left;
-    }
-
-    if (t2_s != tree2)
-    {
-        Node *pp = t2_s_parent;
-
-        Node *p = new node;
-
-        p->data = val;
-        p->left = t1_s;
-        p->right = t2_s;
-
-        pp->left = p;
-
-        if (getBalance(pp) > 1)
-        {
-            rightRotate(pp);
-        }
-
-        display(tree2);
-        cout << endl;
-
-        tree3 = tree2;
-    }
-    else
-    {
-        Node *p = new node;
-
-        p->data = val;
-        p->left = t1_s;
-        p->right = t2_s;
-
-        tree3 = p;
-    }
-    return tree3;
-}
-Node *checkBalance(Node *root, int data)
+Node * AVLise(Node *root, int data)
 {
     int balance = getBalance(root);
     if (balance > 1)
@@ -128,10 +41,12 @@ Node *jointrees(Node *tree1, Node *tree2, int val)
     if (findHeight(tree1) > findHeight(tree2))
     {
         tree1->right = jointrees(tree1->right, tree2, val);
+        return AVLise(tree1, val);
     }
     else if (findHeight(tree1) > findHeight(tree2))
     {
         tree2->left = jointrees(tree1, tree2->left, val);
+        return AVLise(tree2, val);
     }
     else
     {
@@ -198,7 +113,7 @@ int main()
     itr = read_input(file2);
     for (int i = 0; i < itr.size(); i++)
     {
-        // tree2 = AVLInsert(tree2, itr[i]);
+        tree2 = AVLInsert(tree2, itr[i]);
     }
     // // tree2.insert(100);
     // // tree2.insert(90);
