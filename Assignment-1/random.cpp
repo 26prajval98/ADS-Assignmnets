@@ -6,16 +6,37 @@ using namespace std;
 
 int main()
 {
+    int A[200];
+
+    for (int i = 0; i < 200; i++)
+    {
+        A[i] = 0;
+    }
+
+    int val;
+
     ofstream file1("tree1.txt"), file2("tree2.txt");
     int r1 = rand() % 100 + 1, r2 = rand() % 100 + 1;
 
-    for (int i = 0; i < r1-1; i++)
-        file1 << rand() % 100 << endl;
-    file1 << rand() % 100;
+    for (int i = 0; i < r1; i++)
+    {
+        val = rand() % 100;
+        if (!A[val - 1])
+        {
+            A[val - 1] = 1;
+            file1 << val << endl;
+        }
+    }
 
     for (int i = 0; i < r2; i++)
-        file2 << 100 + rand() % 100 << endl;
-    file2 << 100 + rand() % 100;
+    {
+        val = 100 + rand() % 100;
+        if (!A[val - 1])
+        {
+            A[val - 1] = 1;
+            file2 << val << endl;
+        }
+    }
 
     file1.close();
     file2.close();
