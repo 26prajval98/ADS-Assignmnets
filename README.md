@@ -1,4 +1,8 @@
 # ADS-Assignmnets
-ADS assignments
 
-1. https://www.coders-hub.com/2015/07/red-black-tree-rb-tree-using-c.html#.XH0gdYgzZPZ
+## 1.  Assignment 1
+
+*  `g++ .\avlmergeandsplit.cpp .\avltree.cpp` <br/>
+   `.\a.exe`
+*  `g++ .\rbtreejoin.cpp .\rbtree.cpp` <br/>
+   `.\a.exe`
