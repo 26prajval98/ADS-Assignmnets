@@ -180,9 +180,9 @@ int main()
     {
         tree2 = AVLInsert(tree2, itr[i]);
     }
-    // // tree2.insert(100);
-    // // tree2.insert(90);
-    // // tree2.insert(120);
+    // tree2.insert(100);
+    // tree2.insert(90);
+    // tree2.insert(120);
     display(tree2);
     cout << endl;
 
