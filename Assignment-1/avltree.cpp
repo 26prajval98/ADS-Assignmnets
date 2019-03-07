@@ -135,7 +135,6 @@ Node* delNode(Node* root, int data){
     }
     if(root!=NULL){
         int balance = findHeight(root->left)-findHeight(root->right);
-        printf("%d\n",balance);
         if(balance>1){
             int balance2 = getBalance(root->left);
             if(balance2>=0){
