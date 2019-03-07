@@ -49,7 +49,7 @@ Node *jointrees(Node *tree1, Node *tree2, int val)
         tree1->right = jointrees(tree1->right, tree2, val);
         return AVLise(tree1, val);
     }
-    else if (findHeight(tree1) > findHeight(tree2))
+    else if (findHeight(tree1) < findHeight(tree2))
     {
         tree2->left = jointrees(tree1, tree2->left, val);
         return AVLise(tree2, val);
@@ -86,6 +86,14 @@ Node *join(Node *tree1, Node *tree2)
         return NULL;
     }
 
+    if (tree1 != NULL && tree2 != NULL)
+    {
+        if (findMax(tree1) > findMin(tree2))
+        {
+            return NULL;
+        }
+    }
+    
     // Assuming tree1 has all elements smaller than tree2
     Node *tree3 = jointrees(tree1, tree2, val);
 
@@ -118,7 +126,11 @@ Split *split(Node *tree, int key)
         Node *temp_tree = tree->right;
         temp = split(tree->left, key);
         temp_tree = AVLInsert(temp_tree, val);
-        temp->tree2 = join(temp_tree, temp->tree2);
+        display(temp_tree);
+        cout << endl;
+        display(temp->tree2);
+        cout << endl;
+        temp->tree2 = join(temp->tree2, temp_tree);
         return temp;
     }
     else
@@ -131,7 +143,8 @@ Split *split(Node *tree, int key)
     }
 }
 
-Split * splitinto(Node * tree, int val){
+Split *splitinto(Node *tree, int val)
+{
     tree = AVLInsert(tree, val);
     // display(tree);
     cout << endl;
@@ -178,7 +191,11 @@ int main()
     itr = read_input(file2);
     for (int i = 0; i < itr.size(); i++)
     {
+        cout << itr[i];
         tree2 = AVLInsert(tree2, itr[i]);
+        cout << endl;
+        display(tree2);
+        cout << endl;
     }
     // tree2.insert(100);
     // tree2.insert(90);
@@ -193,7 +210,7 @@ int main()
     cout << endl;
     cout << endl;
 
-    Split * splittrees = splitinto(tree3, 100);
+    Split *splittrees = splitinto(tree3, 100);
 
     display(splittrees->tree1);
     cout << endl;
