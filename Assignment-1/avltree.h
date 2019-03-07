@@ -11,32 +11,12 @@ typedef struct node
 	struct node *right;
 } Node;
 
-class AVLtree
-{
-  public:
-	Node *root;
-	AVLtree()
-	{
-		root = NULL;
-	};
-
-	AVLtree(Node *t)
-	{
-		root = t;
-	}
-
-	Node *insert(Node *root, int data);
-	Node *del(Node *root, int data);
-	Node *getRoot();
-	int findMin();
-	int findMax();
-	void disp(Node *root);
-};
-
-int findMini(Node *);
-int findHeight(Node *);
+int findHeight(Node *root);
 int getBalance(Node *root);
-Node *leftRotate(Node *root);
-Node *rightRotate(Node *root);
+int findMin(Node *root);
+int findMin(Node *root);
+Node *AVLInsert(Node *root, int data);
+Node *delNode(Node *root, int data);
+void display(Node *root);
 
 #endif
