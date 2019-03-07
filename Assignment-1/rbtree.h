@@ -2,6 +2,7 @@
 #define RB_TREE
 
 #include<iostream>
+#include <stdlib.h>
 
 using namespace std;
 
