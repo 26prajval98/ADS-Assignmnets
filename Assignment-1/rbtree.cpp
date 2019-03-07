@@ -68,6 +68,17 @@ void RBtree::insertfix(node *t)
                     g->color = 'r';
                     t = g;
                 }
+                else
+                {
+                    if (t->parent->right == t)
+                    {
+                        t = t->parent;
+                        leftrotate(t);
+                    }
+                    t->parent->color = 'b';
+                    g->color = 'r';
+                    rightrotate(g);
+                }
             }
             else
             {
@@ -92,6 +103,17 @@ void RBtree::insertfix(node *t)
                     u->color = 'b';
                     g->color = 'r';
                     t = g;
+                }
+                else
+                {
+                    if (t->parent->left == t)
+                    {
+                        t = t->parent;
+                        rightrotate(t);
+                    }
+                    t->parent->color = 'b';
+                    g->color = 'r';
+                    leftrotate(g);
                 }
             }
             else
@@ -170,13 +192,19 @@ void RBtree::del(int x)
             p->key = y->key;
         }
         if (y->color == 'b')
+        {
             delfix(q);
+        }
     }
 }
 
 void RBtree::delfix(node *p)
 {
     node *s;
+
+    if(p==NULL)
+        return;
+
     while (p != root && p->color == 'b')
     {
         if (p->parent->left == p)
@@ -344,8 +372,9 @@ void RBtree::display(node *p)
 
 int RBtree::min()
 {
-    node * t = root;
-    while(t->left!=NULL){
+    node *t = root;
+    while (t->left != NULL)
+    {
         t = t->left;
     }
     return t->key;
@@ -353,8 +382,9 @@ int RBtree::min()
 
 int RBtree::max()
 {
-    node * t = root;
-    while(t->right!=NULL){
+    node *t = root;
+    while (t->right != NULL)
+    {
         t = t->right;
     }
     return t->key;
