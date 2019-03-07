@@ -63,10 +63,20 @@ Node *join(Node *tree1, Node *tree2)
 {
     Node *t1_s = tree1;
     Node *t2_s = tree2;
-    int val = findMax(tree1);
+    int val;
 
-    tree1 = delNode(tree1, val);
-
+    if(tree1 != NULL){
+        val = findMax(tree1);
+        tree1 = delNode(tree1, val);
+    }
+    else if(tree2 != NULL){
+        val = findMin(tree2);
+        tree2 = delNode(tree2, val);
+    }
+    else{
+        return NULL;
+    }
+    
     // Assuming tree1 has all elements smaller than tree2
     Node *tree3 = jointrees(tree1, tree2, val);
 
@@ -95,7 +105,7 @@ int main()
     itr = read_input(file1);
     for (int i = 0; i < itr.size(); i++)
     {
-        tree1 = AVLInsert(tree1, itr[i]);
+        // tree1 = AVLInsert(tree1, itr[i]);
     }
     // tree1.insert(7);
     // tree1.insert(3);
