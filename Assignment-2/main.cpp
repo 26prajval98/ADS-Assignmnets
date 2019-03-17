@@ -158,4 +158,8 @@ int main(int argc, char *argv)
 
 	generate_graph(nodes, avg_degree, weight0, weight1);
 	graph_node **adj_list = read_graph();
+
+	binary_heap_demo(adj_list, nodes, 0);
+	binomial_heap_demo(adj_list, nodes, 0);
+	fibonacci_heap_demo(adj_list, nodes, 0);
 }
