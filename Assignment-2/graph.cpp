@@ -57,7 +57,6 @@ graph_node **read_graph()
 	int nodes, x, y;
 
 	graph_file >> nodes;
-	cout << nodes << endl;
 
 	struct graph_node **graph = (struct graph_node **)malloc(nodes * sizeof(struct graph_node *));
 
