@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define INIFNITY 100000
+#define INIFNITY 10000
 
 void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 {
@@ -16,7 +16,7 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 	for (int i = 0; i < nodes; i++)
 	{
 		Nodes[i] = (int *)malloc(3 * sizeof(int));
-		Nodes[i][0] = INFINITY;
+		Nodes[i][0] = (int) INFINITY;
 		Nodes[i][1] = 1;
 		Nodes[i][2] = 0;
 	}
@@ -63,7 +63,7 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 	for (int i = 0; i < nodes; i++)
 	{
 		Nodes[i] = (int *)malloc(3 * sizeof(int));
-		Nodes[i][0] = INFINITY;
+		Nodes[i][0] = (int) INFINITY;
 		Nodes[i][1] = 1;
 		Nodes[i][2] = 0;
 	}
@@ -110,7 +110,7 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 	for (int i = 0; i < nodes; i++)
 	{
 		Nodes[i] = (int *)malloc(3 * sizeof(int));
-		Nodes[i][0] = INFINITY;
+		Nodes[i][0] = (int) INFINITY;
 		Nodes[i][1] = 1;
 		Nodes[i][2] = 0;
 	}
