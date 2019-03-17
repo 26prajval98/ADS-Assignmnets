@@ -17,7 +17,7 @@
 * Linux : <br/>
 `sh run.sh` <br/>
 ### Generates
-	* graph.txt (text file containing a graph)
-	* binary.txt (text file containing all the time, no of operations, SSSP for each node from source when binary heap is used)
-	* binomial.txt (text file containing all the time, no of operations, SSSP for each node from source when binomial heap is used)
-	* fibonacci.txt (text file containing all the time, no of operations, SSSP for each node from source when fibonacci heap is used)
+* `graph.txt` (text file containing a graph)
+* `binary.txt` (text file containing all the time, no of operations, SSSP for each node from source when binary heap is used)
+* `binomial.txt` (text file containing all the time, no of operations, SSSP for each node from source when binomial heap is used)
+* `fibonacci.txt` (text file containing all the time, no of operations, SSSP for each node from source when fibonacci heap is used)
