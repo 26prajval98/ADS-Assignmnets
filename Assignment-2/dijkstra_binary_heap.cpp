@@ -1,9 +1,10 @@
-#include "graph.h"
 #include <iostream>
+#include "graph.h"
 
 using namespace std;
 
 int main()
 {
-	generate_graph(5, 6, 0, 5);
+
+	read_graph();
 }
