@@ -3,6 +3,7 @@
 
 #include <list>
 #include <limits>
+#include "key_val.h"
 
 using namespace std;
 
@@ -55,7 +56,7 @@ class binomial_heap
 	}
 
 	void insert(int, int);
-	int extract_min();
+	keyval extract_min();
 	void decrease_key(int, int);
 
 	~binomial_heap()
@@ -246,9 +247,9 @@ void binomial_heap::insert(int key, int data)
 	return;
 }
 
-int binomial_heap::extract_min()
+keyval binomial_heap::extract_min()
 {
-	int data;
+	keyval t;
 	binomial_tree_node *old_node = nullptr;
 	binomial_tree_node *temporary_node = nullptr;
 	list<binomial_tree_node *> temporary_list;
@@ -257,7 +258,9 @@ int binomial_heap::extract_min()
 
 	if (binomial_tree_list.empty())
 	{
-		return numeric_limits<int>::max();
+		t.data = numeric_limits<int>::max();
+		t.key = numeric_limits<int>::max();
+		return t;
 	}
 
 	minimum_iterator = binomial_tree_list.begin();
@@ -272,7 +275,8 @@ int binomial_heap::extract_min()
 
 	old_node = *minimum_iterator;
 
-	data = old_node->data;
+	t.data = old_node->data;
+	t.key = old_node->key;
 
 	while (old_node->child != nullptr)
 	{
@@ -292,7 +296,7 @@ int binomial_heap::extract_min()
 
 	binomial_tree_list = binomial_tree_list_merge(binomial_tree_list, temporary_list);
 
-	return data;
+	return t;
 }
 
 void binomial_heap::decrease_key(int data, int key)
