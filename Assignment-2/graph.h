@@ -6,8 +6,8 @@
 #include <random>
 struct graph_node
 {
-	int key;
-	int data;
+	int key;		// distance
+	int data;		// node number
 	struct graph_node *next;
 };
 

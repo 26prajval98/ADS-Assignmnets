@@ -2,6 +2,7 @@
 #define BINARY_HEAP_H
 
 #include <vector>
+#include "key_val.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ class binary_heap
 	}
 
 	void insert(int, int);
-	int extract_min();
+	keyval extract_min();
 	void decrease_key(int, int);
 };
 
@@ -123,18 +124,18 @@ void binary_heap::insert(int key, int data)
 	return;
 }
 
-int binary_heap::extract_min()
+keyval binary_heap::extract_min()
 {
+	keyval temp;
 	++operations;
-	int data;
-
-	data = heap[0].data;
-
+	
+	temp.data = heap[0].data;
+	temp.key = heap[0].key;
 	heap.erase(heap.begin());
 
 	min_heapify(0);
 
-	return data;
+	return temp;
 }
 
 void binary_heap::decrease_key(int data, int key)
