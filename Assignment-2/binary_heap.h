@@ -149,7 +149,7 @@ void binary_heap::decrease_key(int data, int key)
 	{
 		return;
 	}
-
+	
 	heap[current_index].key = key;
 
 	if (current_index == 0)

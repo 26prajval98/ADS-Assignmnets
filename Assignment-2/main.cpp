@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define INIFNITY 10000
+#define INIFNITY 255
 #define ARR_SIZE 1
 
 void print_into_file(string file_name, int **Nodes, int nodes)
@@ -22,6 +22,7 @@ void print_into_file(string file_name, int **Nodes, int nodes)
 
 void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 {
+
 	binary_heap Q;
 	int **Nodes = (int **)malloc(nodes * sizeof(int *));
 
@@ -42,7 +43,7 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 		Q.insert(Nodes[i][0], i);
 	}
 
-	while (Q.empty())
+	while (!Q.empty())
 	{
 		keyval temp = Q.extract_min();
 		int i = temp.data;
@@ -58,12 +59,12 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 		{
 			int adj = t->data;
 			int adj_dis = t->key;
-			cout << t->key;
 			if (Nodes[adj][0] > dist + adj_dis)
 			{
-				Nodes[i][0] = dist + adj_dis;
+				Nodes[adj][0] = dist + adj_dis;
 				Q.decrease_key(adj, dist + adj_dis);
 			}
+			t = t->next;
 		}
 	}
 
@@ -95,7 +96,7 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 		Q.insert(Nodes[i][0], i);
 	}
 
-	while (Q.empty())
+	while (!Q.empty())
 	{
 		keyval temp = Q.extract_min();
 		int i = temp.data;
@@ -117,6 +118,7 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 				Nodes[i][0] = dist + adj_dis;
 				Q.decrease_key(adj, dist + adj_dis);
 			}
+			t = t->next;
 		}
 	}
 
@@ -147,7 +149,7 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 		Q.insert(Nodes[i][0], i);
 	}
 
-	while (Q.empty())
+	while (!Q.empty())
 	{
 		keyval temp = Q.extract_min();
 		int i = temp.data;
@@ -169,6 +171,7 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 				Nodes[i][0] = dist + adj_dis;
 				Q.decrease_key(adj, dist + adj_dis);
 			}
+			t = t->next;
 		}
 	}
 
@@ -189,5 +192,5 @@ int main(int argc, char *argv[])
 
 	binary_heap_demo(adj_list, nodes, 0);
 	binomial_heap_demo(adj_list, nodes, 0);
-	fibonacci_heap_demo(adj_list, nodes, 0);
+	// fibonacci_heap_demo(adj_list, nodes, 0);
 }
