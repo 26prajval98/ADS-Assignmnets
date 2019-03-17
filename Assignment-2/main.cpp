@@ -58,9 +58,12 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 		{
 			int adj = t->data;
 			int adj_dis = t->key;
-
+			cout << t->key;
 			if (Nodes[adj][0] > dist + adj_dis)
+			{
+				Nodes[i][0] = dist + adj_dis;
 				Q.decrease_key(adj, dist + adj_dis);
+			}
 		}
 	}
 
@@ -110,7 +113,10 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 			int adj_dis = t->key;
 
 			if (Nodes[adj][0] > dist + adj_dis)
+			{
+				Nodes[i][0] = dist + adj_dis;
 				Q.decrease_key(adj, dist + adj_dis);
+			}
 		}
 	}
 
@@ -159,10 +165,14 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 			int adj_dis = t->key;
 
 			if (Nodes[adj][0] > dist + adj_dis)
+			{
+				Nodes[i][0] = dist + adj_dis;
 				Q.decrease_key(adj, dist + adj_dis);
+			}
 		}
 	}
 
+	cout << "Fibonacci Heap Operations = " << Q.operations << endl;
 	print_into_file("fibonacci.txt", Nodes, nodes);
 	return;
 }
