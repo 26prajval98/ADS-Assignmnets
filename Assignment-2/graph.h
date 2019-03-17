@@ -4,7 +4,6 @@
 #include <iostream>
 #include <fstream>
 #include <random>
-
 struct graph_node
 {
 	int key;
