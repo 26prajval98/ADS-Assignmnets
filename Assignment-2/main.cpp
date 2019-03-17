@@ -23,6 +23,8 @@ void print_into_file(string file_name, int **Nodes, int nodes)
 
 void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 {
+	clock_t start = clock();
+
 	binary_heap Q;
 	int **Nodes = (int **)malloc(nodes * sizeof(int *));
 
@@ -33,7 +35,6 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 		// Nodes[i][1] = 1;
 		// Nodes[i][2] = 0;
 	}
-	clock_t start = clock();
 
 	// Initialize source
 	Nodes[s][0] = 0;
@@ -70,12 +71,9 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 	}
 
 	clock_t end = clock();
-
-	double time_e = (end - start) / CLOCKS_PER_SEC;
-	
-	cout << "Binary Heap Operations = " << Q.operations << " and time taken " << time_e << endl;
+	double time_e = (double)end - (double)start;
+	cout << "Binary Heap Operations = " << Q.operations << " and time taken is :" << time_e << "ms" << endl;
 	print_into_file("binary.txt", Nodes, nodes);
-
 	return;
 }
 
@@ -129,10 +127,8 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 	}
 
 	clock_t end = clock();
-
-	double time_e = (end - start) / CLOCKS_PER_SEC;
-	
-	cout << "Binomial Heap Operations = " << Q.operations << " and time taken " << time_e << endl;
+	double time_e = (double)end - (double)start;
+	cout << "Binomial Heap Operations = " << Q.operations << " and time taken " << time_e << "ms" << endl;;
 	print_into_file("binomial.txt", Nodes, nodes);
 	return;
 }
@@ -186,9 +182,8 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 
 	clock_t end = clock();
 
-	double time_e = (end - start) / CLOCKS_PER_SEC;
-	
-	cout << "Fibonacci Heap Operations =  = " << Q.operations << " and time taken " << time_e << endl;
+	double time_e = (double)end - (double)start;
+	cout << "Fibonacci Heap Operations =  = " << Q.operations << " and time taken " << time_e << "ms" << endl;
 	print_into_file("fibonacci.txt", Nodes, nodes);
 	return;
 }
@@ -203,7 +198,10 @@ int main(int argc, char *argv[])
 	generate_graph(nodes, avg_degree, weight0, weight1);
 	graph_node **adj_list = read_graph();
 	
+	cout << endl <<"Started Binary Heap"<< endl;
 	binary_heap_demo(adj_list, nodes, 0);
+	cout << endl  <<"Started Binomial Heap"<< endl;
 	binomial_heap_demo(adj_list, nodes, 0);
+	cout << endl  <<"Started Fibonacci Heap"<< endl;
 	fibonacci_heap_demo(adj_list, nodes, 0);
 }
