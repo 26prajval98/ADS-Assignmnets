@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <limits.h>
+#include "key_val.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -226,7 +227,7 @@ void display_heap()
 }
 
 node *FIB_HEAP_INSERT(int, int);
-int FIB_HEAP_EXTRACT_MIN();
+keyval FIB_HEAP_EXTRACT_MIN();
 void CONSOLIDATE();
 void FIB_HEAP_LINK(node *, node *);
 void FIB_HEAP_DECREASE_KEY(node *, int);
@@ -261,13 +262,17 @@ node *FIB_HEAP_INSERT(int key, int data)
 	return new_node;
 }
 
-int FIB_HEAP_EXTRACT_MIN()
+keyval FIB_HEAP_EXTRACT_MIN()
 {
 	node *z = min_node;
-	int data;
+	keyval t;
 
 	if (z == NULL)
-		return -1;
+	{
+		t.key = -1;
+		t.data = -1;
+		return t;
+	}
 
 	while (z->child != NULL)
 	{
@@ -284,7 +289,8 @@ int FIB_HEAP_EXTRACT_MIN()
 	if (z == z->right)
 	{
 		min_node = NULL;
-		data = z->data;
+		t.data = z->data;
+		t.key = z->key;
 		free(z);
 	}
 	else
@@ -293,14 +299,15 @@ int FIB_HEAP_EXTRACT_MIN()
 
 		remove_from_root_list(z);
 
-		data = z->data;
+		t.data = z->data;
+		t.key = z->key;
 		free(z);
 
 		CONSOLIDATE();
 	}
 
 	number_of_nodes -= 1;
-	return data;
+	return t;
 }
 
 void CONSOLIDATE()
@@ -492,7 +499,7 @@ class fibonacci_heap
 	}
 
 	void insert(int, int);
-	int extract_min();
+	keyval extract_min();
 	void decrease_key(int, int);
 };
 
@@ -503,7 +510,7 @@ void fibonacci_heap::insert(int key, int data)
 	return;
 }
 
-int fibonacci_heap::extract_min()
+keyval fibonacci_heap::extract_min()
 {
 	return FIB_HEAP_EXTRACT_MIN();
 }
