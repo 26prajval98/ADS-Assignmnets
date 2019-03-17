@@ -10,9 +10,11 @@ using namespace std;
 #define INF 10000
 #define ARR_SIZE 1
 
-void print_into_file(string file_name, int **Nodes, int nodes)
+void print_into_file(string file_name, int **Nodes, int nodes, float time, int ops)
 {
 	ofstream file(file_name);
+	file <<"Time : " << time << endl;
+	file <<"Operations : " << ops << endl;
 	for (int i = 0; i < nodes; i++)
 	{
 		file << i << " , " << Nodes[i][0] << endl;
@@ -77,7 +79,7 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 	clock_t end = clock();
 	double time_e = (double)end - (double)start;
 	cout << "Binary Heap Operations = " << Q.operations << " and time taken is :" << time_e << "ms" << endl;
-	print_into_file("binary.txt", Nodes, nodes);
+	print_into_file("binary.txt", Nodes, nodes, time_e, Q.operations);
 	return;
 }
 
@@ -133,7 +135,7 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 	clock_t end = clock();
 	double time_e = (double)end - (double)start;
 	cout << "Binomial Heap Operations = " << Q.operations << " and time taken " << time_e << "ms" << endl;;
-	print_into_file("binomial.txt", Nodes, nodes);
+	print_into_file("binomial.txt", Nodes, nodes, time_e, Q.operations);
 	return;
 }
 
@@ -188,7 +190,7 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 
 	double time_e = (double)end - (double)start;
 	cout << "Fibonacci Heap Operations =  = " << Q.operations << " and time taken " << time_e << "ms" << endl;
-	print_into_file("fibonacci.txt", Nodes, nodes);
+	print_into_file("fibonacci.txt", Nodes, nodes, time_e, Q.operations);
 	return;
 }
 
