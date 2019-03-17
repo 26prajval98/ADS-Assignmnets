@@ -16,8 +16,12 @@ void print_into_file(string file_name, int **Nodes, int nodes)
 	for (int i = 0; i < nodes; i++)
 	{
 		file << i << " , " << Nodes[i][0] << endl;
+		cout << i << "," << Nodes[i][0] << endl;
 	}
 	
+	if(file.is_open())
+		file.close();
+		
 	return;
 }
 
