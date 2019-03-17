@@ -149,7 +149,7 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 	return;
 }
 
-int main(int argc, char *argv)
+int main(int argc, char *argv[])
 {
 	int nodes = atoi((const char *)argv[1]);
 	int avg_degree = atoi((const char *)argv[2]);
