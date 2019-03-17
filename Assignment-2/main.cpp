@@ -16,9 +16,13 @@ void print_into_file(string file_name, int **Nodes, int nodes)
 	for (int i = 0; i < nodes; i++)
 	{
 		file << i << " , " << Nodes[i][0] << endl;
+		cout << i << "," << Nodes[i][0] << endl;
 	}
-
-	file.close();
+	
+	if(file.is_open())
+		file.close();
+		
+	return;
 }
 
 void binary_heap_demo(graph_node **adj_list, int nodes, int s)
