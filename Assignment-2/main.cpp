@@ -2,6 +2,7 @@
 #include "graph.h"
 #include "binary_heap.h"
 #include "binomial_heap.h"
+#include "fibonacci_heap.h"
 
 using namespace std;
 
@@ -103,7 +104,7 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 
 void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 {
-	binary_heap Q;
+	fibonacci_heap Q;
 	int **Nodes = (int **)malloc(nodes * sizeof(int *));
 
 	for (int i = 0; i < nodes; i++)
