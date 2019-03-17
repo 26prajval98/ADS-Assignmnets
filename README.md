@@ -11,10 +11,12 @@
 
 ## 2.  Assignment 2
 
-*   <b>Compare Dijktra's Alogorithm using binary heap, binomial heap and fibonacci heap<b> <br/>
-    * Windows : <br/>
-	`.\run.bat` <br/>
-	<b>Generates <br />
+### Compare Dijktra's Alogorithm using binary heap, binomial heap and fibonacci heap
+* Windows : <br/>
+`.\run.bat` <br/>
+* Linux : <br/>
+`sh run.sh` <br/>
+### Generates
 	* graph.txt (text file containing a graph)
 	* binary.txt (text file containing all the time, no of operations, SSSP for each node from source when binary heap is used)
 	* binomial.txt (text file containing all the time, no of operations, SSSP for each node from source when binomial heap is used)
