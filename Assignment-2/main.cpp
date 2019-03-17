@@ -7,6 +7,18 @@
 using namespace std;
 
 #define INIFNITY 10000
+#define ARR_SIZE 1
+
+void print_into_file(string file_name, int **Nodes, int nodes)
+{
+	ofstream file(file_name);
+	for (int i = 0; i < nodes; i++)
+	{
+		file << i << " , " << Nodes[i][0] << endl;
+	}
+
+	file.close();
+}
 
 void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 {
@@ -15,10 +27,10 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 
 	for (int i = 0; i < nodes; i++)
 	{
-		Nodes[i] = (int *)malloc(3 * sizeof(int));
-		Nodes[i][0] = (int) INFINITY;
-		Nodes[i][1] = 1;
-		Nodes[i][2] = 0;
+		Nodes[i] = (int *)malloc(ARR_SIZE * sizeof(int));
+		Nodes[i][0] = (int)INFINITY;
+		// Nodes[i][1] = 1;
+		// Nodes[i][2] = 0;
 	}
 
 	// Initialize source
@@ -37,8 +49,8 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 		int dist = temp.key;
 
 		Nodes[i][0] = dist;
-		Nodes[i][1] = 0;
-		Nodes[i][2] = 1;
+		// Nodes[i][1] = 0;
+		// Nodes[i][2] = 1;
 
 		graph_node *t = adj_list[i];
 
@@ -51,6 +63,9 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 				Q.decrease_key(adj, dist + adj_dis);
 		}
 	}
+
+	cout << "Binary Heap Operations = " << Q.operations << endl;
+	print_into_file("binary.txt", Nodes, nodes);
 
 	return;
 }
@@ -62,10 +77,10 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 
 	for (int i = 0; i < nodes; i++)
 	{
-		Nodes[i] = (int *)malloc(3 * sizeof(int));
-		Nodes[i][0] = (int) INFINITY;
-		Nodes[i][1] = 1;
-		Nodes[i][2] = 0;
+		Nodes[i] = (int *)malloc(ARR_SIZE * sizeof(int));
+		Nodes[i][0] = (int)INFINITY;
+		// Nodes[i][1] = 1;
+		// Nodes[i][2] = 0;
 	}
 
 	// Initialize source
@@ -84,8 +99,8 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 		int dist = temp.key;
 
 		Nodes[i][0] = dist;
-		Nodes[i][1] = 0;
-		Nodes[i][2] = 1;
+		// Nodes[i][1] = 0;
+		// Nodes[i][2] = 1;
 
 		graph_node *t = adj_list[i];
 
@@ -99,6 +114,8 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 		}
 	}
 
+	cout << "Binomial Heap Operations = " << Q.operations << endl;
+	print_into_file("binomial.txt", Nodes, nodes);
 	return;
 }
 
@@ -109,10 +126,10 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 
 	for (int i = 0; i < nodes; i++)
 	{
-		Nodes[i] = (int *)malloc(3 * sizeof(int));
-		Nodes[i][0] = (int) INFINITY;
-		Nodes[i][1] = 1;
-		Nodes[i][2] = 0;
+		Nodes[i] = (int *)malloc(ARR_SIZE * sizeof(int));
+		Nodes[i][0] = (int)INFINITY;
+		// Nodes[i][1] = 1;
+		// Nodes[i][2] = 0;
 	}
 
 	// Initialize source
@@ -131,8 +148,8 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 		int dist = temp.key;
 
 		Nodes[i][0] = dist;
-		Nodes[i][1] = 0;
-		Nodes[i][2] = 1;
+		// Nodes[i][1] = 0;
+		// Nodes[i][2] = 1;
 
 		graph_node *t = adj_list[i];
 
@@ -146,6 +163,7 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 		}
 	}
 
+	print_into_file("fibonacci.txt", Nodes, nodes);
 	return;
 }
 

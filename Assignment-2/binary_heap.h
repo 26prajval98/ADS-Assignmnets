@@ -15,8 +15,6 @@ class binary_heap
 		int data;
 	};
 
-	int operations = 0;
-
 	vector<binary_heap_node> heap;
 
 	void min_heapify(int);
@@ -28,6 +26,7 @@ class binary_heap
 		return heap.empty();
 	}
 
+	int operations = 0;
 	void insert(int, int);
 	keyval extract_min();
 	void decrease_key(int, int);
@@ -75,7 +74,6 @@ void binary_heap::min_heapify(int current_index)
 
 int binary_heap::search(int data)
 {
-	++operations;
 	int index;
 
 	for (index = 0; index < heap.size(); index++)

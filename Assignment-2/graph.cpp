@@ -25,6 +25,8 @@ void generate_graph(int nodes, int avg_degree, int weight0, int weight1)
 			graph_file << node << " " << wt << std::endl;
 		}
 	}
+
+	graph_file.close();
 }
 
 graph_node *add_to_graph(graph_node *list, int data, int key)
@@ -74,5 +76,8 @@ graph_node **read_graph()
 			graph[i] = add_to_graph(graph[i], x, y);
 		}
 	}
+
+	graph_file.close();
+	
 	return graph;
 }

@@ -497,7 +497,7 @@ class fibonacci_heap
 	{
 		return min_node == NULL;
 	}
-
+	int operations;
 	void insert(int, int);
 	keyval extract_min();
 	void decrease_key(int, int);
@@ -505,20 +505,21 @@ class fibonacci_heap
 
 void fibonacci_heap::insert(int key, int data)
 {
+	++operations;
 	FIB_HEAP_INSERT(key, data);
-
 	return;
 }
 
 keyval fibonacci_heap::extract_min()
 {
+	++operations;
 	return FIB_HEAP_EXTRACT_MIN();
 }
 
 void fibonacci_heap::decrease_key(int data, int key)
 {
+	++operations;
 	FIB_HEAP_DECREASE_KEY(FIB_HEAP_SEARCH(data), key);
-
 	return;
 }
 

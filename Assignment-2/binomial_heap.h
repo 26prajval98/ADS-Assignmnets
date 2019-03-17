@@ -55,6 +55,7 @@ class binomial_heap
 		return binomial_tree_list.empty();
 	}
 
+	int operations;
 	void insert(int, int);
 	keyval extract_min();
 	void decrease_key(int, int);
@@ -232,6 +233,7 @@ binomial_heap::binomial_tree_node *binomial_heap::search(int data)
 
 void binomial_heap::insert(int key, int data)
 {
+	++operations;
 	binomial_tree_node *new_node = nullptr;
 	list<binomial_tree_node *> temporary;
 
@@ -249,6 +251,7 @@ void binomial_heap::insert(int key, int data)
 
 keyval binomial_heap::extract_min()
 {
+	++operations;
 	keyval t;
 	binomial_tree_node *old_node = nullptr;
 	binomial_tree_node *temporary_node = nullptr;
@@ -301,6 +304,7 @@ keyval binomial_heap::extract_min()
 
 void binomial_heap::decrease_key(int data, int key)
 {
+	++operations;
 	int temporary;
 	binomial_tree_node *node = nullptr;
 
