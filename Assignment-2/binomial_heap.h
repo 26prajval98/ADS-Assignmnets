@@ -55,7 +55,7 @@ class binomial_heap
 		return binomial_tree_list.empty();
 	}
 
-	int operations;
+	int operations = 0;
 	void insert(int, int);
 	keyval extract_min();
 	void decrease_key(int, int);

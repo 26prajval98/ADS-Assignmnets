@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define INIFNITY 255
+#define INF 10000
 #define ARR_SIZE 1
 
 void print_into_file(string file_name, int **Nodes, int nodes)
@@ -29,7 +29,7 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 	for (int i = 0; i < nodes; i++)
 	{
 		Nodes[i] = (int *)malloc(ARR_SIZE * sizeof(int));
-		Nodes[i][0] = (int)INFINITY;
+		Nodes[i][0] = (int)INF;
 		// Nodes[i][1] = 1;
 		// Nodes[i][2] = 0;
 	}
@@ -82,7 +82,7 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 	for (int i = 0; i < nodes; i++)
 	{
 		Nodes[i] = (int *)malloc(ARR_SIZE * sizeof(int));
-		Nodes[i][0] = (int)INFINITY;
+		Nodes[i][0] = (int)INF;
 		// Nodes[i][1] = 1;
 		// Nodes[i][2] = 0;
 	}
@@ -90,7 +90,7 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 	// Initialize source
 	Nodes[s][0] = 0;
 
-	// Create Min Binary Heap
+	// Create Min Binomial Heap
 	for (int i = 0; i < nodes; i++)
 	{
 		Q.insert(Nodes[i][0], i);
@@ -115,7 +115,7 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 
 			if (Nodes[adj][0] > dist + adj_dis)
 			{
-				Nodes[i][0] = dist + adj_dis;
+				Nodes[adj][0] = dist + adj_dis;
 				Q.decrease_key(adj, dist + adj_dis);
 			}
 			t = t->next;
@@ -135,7 +135,7 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 	for (int i = 0; i < nodes; i++)
 	{
 		Nodes[i] = (int *)malloc(ARR_SIZE * sizeof(int));
-		Nodes[i][0] = (int)INFINITY;
+		Nodes[i][0] = INF;
 		// Nodes[i][1] = 1;
 		// Nodes[i][2] = 0;
 	}
@@ -143,7 +143,7 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 	// Initialize source
 	Nodes[s][0] = 0;
 
-	// Create Min Binary Heap
+	// Create Min Fibonacci Heap
 	for (int i = 0; i < nodes; i++)
 	{
 		Q.insert(Nodes[i][0], i);
@@ -154,21 +154,18 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 		keyval temp = Q.extract_min();
 		int i = temp.data;
 		int dist = temp.key;
-
 		Nodes[i][0] = dist;
 		// Nodes[i][1] = 0;
 		// Nodes[i][2] = 1;
-
 		graph_node *t = adj_list[i];
 
 		while (t != NULL)
 		{
 			int adj = t->data;
 			int adj_dis = t->key;
-
 			if (Nodes[adj][0] > dist + adj_dis)
 			{
-				Nodes[i][0] = dist + adj_dis;
+				Nodes[adj][0] = dist + adj_dis;
 				Q.decrease_key(adj, dist + adj_dis);
 			}
 			t = t->next;
@@ -192,5 +189,5 @@ int main(int argc, char *argv[])
 
 	binary_heap_demo(adj_list, nodes, 0);
 	binomial_heap_demo(adj_list, nodes, 0);
-	// fibonacci_heap_demo(adj_list, nodes, 0);
+	fibonacci_heap_demo(adj_list, nodes, 0);
 }

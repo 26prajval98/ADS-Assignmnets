@@ -23,7 +23,7 @@ struct node
 	int mark;
 
 	/* MST attr */
-	int distance;
+	// int distance;
 };
 
 typedef struct node node;
@@ -244,7 +244,7 @@ node *FIB_HEAP_INSERT(int key, int data)
 	new_node->parent = NULL;
 	new_node->child = NULL;
 	new_node->mark = FALSE;
-	new_node->distance = INT_MAX;
+	// new_node->distance = INT_MAX;
 
 	add_to_root_list(new_node);
 
@@ -253,7 +253,7 @@ node *FIB_HEAP_INSERT(int key, int data)
 
 	else
 	{
-		if (new_node->distance < min_node->distance)
+		if (new_node->key < min_node->key)
 			min_node = new_node;
 	}
 
@@ -334,7 +334,7 @@ void CONSOLIDATE()
 		{
 			y = hash_map[degree];
 
-			if (x->distance > y->distance)
+			if (x->key > y->key)
 				swap(&x, &y);
 
 			FIB_HEAP_LINK(y, x);
@@ -354,7 +354,7 @@ void CONSOLIDATE()
 	{
 		if (hash_map[i] != NULL)
 		{
-			if (hash_map[i]->distance < min_node->distance)
+			if (hash_map[i]->key < min_node->key)
 				min_node = hash_map[i];
 		}
 	}
@@ -379,19 +379,19 @@ void FIB_HEAP_DECREASE_KEY(node *x, int k)
 	if (x == NULL)
 		return;
 
-	if (k > x->distance)
-		printf("Error! New distance is greater than current distance");
+	if (k > x->key)
+		printf("Error! New key is greater than current key");
 
-	x->distance = k;
+	x->key = k;
 	node *y = x->parent;
 
-	if (y != NULL && x->distance < y->distance)
+	if (y != NULL && x->key < y->key)
 	{
 		CUT(x, y);
 		CASCADING_CUT(y);
 	}
 
-	if (x->distance < min_node->distance)
+	if (x->key < min_node->key)
 		min_node = x;
 }
 
@@ -497,7 +497,7 @@ class fibonacci_heap
 	{
 		return min_node == NULL;
 	}
-	int operations;
+	int operations = 0;
 	void insert(int, int);
 	keyval extract_min();
 	void decrease_key(int, int);
