@@ -18,9 +18,6 @@ void print_into_file(string file_name, int **Nodes, int nodes)
 		file << i << " , " << Nodes[i][0] << endl;
 	}
 	
-	if(file.is_open())
-		file.close();
-		
 	return;
 }
 
