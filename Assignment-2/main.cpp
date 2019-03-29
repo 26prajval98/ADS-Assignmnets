@@ -18,10 +18,10 @@ void print_into_file(string file_name, int **Nodes, int nodes, float time, int o
 	for (int i = 0; i < nodes; i++)
 	{
 		file << i << " , " << Nodes[i][0] << endl;
-		cout << i << "," << Nodes[i][0] << endl;
+		// cout << i << "," << Nodes[i][0] << endl;
 	}
 	
-	// if(file.is_open())
+	// if(file.is_open())c
 	file.close();
 		
 	return;
@@ -78,7 +78,8 @@ void binary_heap_demo(graph_node **adj_list, int nodes, int s)
 
 	clock_t end = clock();
 	double time_e = (double)end - (double)start;
-	cout << "Binary Heap Operations = " << Q.operations << " and time taken is :" << time_e << "ms" << endl;
+	time_e = time_e/CLOCKS_PER_SEC;
+	cout << "Binary Heap Operations = " << Q.operations << " and time taken is :" << time_e << "s" << endl;
 	print_into_file("binary.txt", Nodes, nodes, time_e, Q.operations);
 	return;
 }
@@ -134,7 +135,8 @@ void binomial_heap_demo(graph_node **adj_list, int nodes, int s)
 
 	clock_t end = clock();
 	double time_e = (double)end - (double)start;
-	cout << "Binomial Heap Operations = " << Q.operations << " and time taken " << time_e << "ms" << endl;;
+	time_e = time_e/CLOCKS_PER_SEC;
+	cout << "Binomial Heap Operations = " << Q.operations << " and time taken " << time_e << "s" << endl;;
 	print_into_file("binomial.txt", Nodes, nodes, time_e, Q.operations);
 	return;
 }
@@ -185,11 +187,11 @@ void fibonacci_heap_demo(graph_node **adj_list, int nodes, int s)
 		}
 	}
 
-
 	clock_t end = clock();
 
 	double time_e = (double)end - (double)start;
-	cout << "Fibonacci Heap Operations =  = " << Q.operations << " and time taken " << time_e << "ms" << endl;
+	time_e = time_e/CLOCKS_PER_SEC;
+	cout << "Fibonacci Heap Operations =  = " << Q.operations << " and time taken " << time_e << "s" << endl;
 	print_into_file("fibonacci.txt", Nodes, nodes, time_e, Q.operations);
 	return;
 }
