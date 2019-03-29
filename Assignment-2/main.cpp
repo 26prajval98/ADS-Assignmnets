@@ -21,8 +21,8 @@ void print_into_file(string file_name, int **Nodes, int nodes, float time, int o
 		cout << i << "," << Nodes[i][0] << endl;
 	}
 	
-	if(file.is_open())
-		file.close();
+	// if(file.is_open())
+	file.close();
 		
 	return;
 }
@@ -206,8 +206,8 @@ int main(int argc, char *argv[])
 	
 	cout << endl <<"Started Binary Heap"<< endl;
 	binary_heap_demo(adj_list, nodes, 0);
-	cout << endl  <<"Started Binomial Heap"<< endl;
-	binomial_heap_demo(adj_list, nodes, 0);
-	cout << endl  <<"Started Fibonacci Heap"<< endl;
-	fibonacci_heap_demo(adj_list, nodes, 0);
+	// cout << endl  <<"Started Binomial Heap"<< endl;
+	// binomial_heap_demo(adj_list, nodes, 0);
+	// cout << endl  <<"Started Fibonacci Heap"<< endl;
+	// fibonacci_heap_demo(adj_list, nodes, 0);
 }
