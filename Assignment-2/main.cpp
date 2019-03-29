@@ -206,8 +206,8 @@ int main(int argc, char *argv[])
 	
 	cout << endl <<"Started Binary Heap"<< endl;
 	binary_heap_demo(adj_list, nodes, 0);
-	// cout << endl  <<"Started Binomial Heap"<< endl;
-	// binomial_heap_demo(adj_list, nodes, 0);
-	// cout << endl  <<"Started Fibonacci Heap"<< endl;
-	// fibonacci_heap_demo(adj_list, nodes, 0);
+	cout << endl  <<"Started Binomial Heap"<< endl;
+	binomial_heap_demo(adj_list, nodes, 0);
+	cout << endl  <<"Started Fibonacci Heap"<< endl;
+	fibonacci_heap_demo(adj_list, nodes, 0);
 }

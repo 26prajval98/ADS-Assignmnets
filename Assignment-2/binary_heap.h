@@ -129,7 +129,8 @@ keyval binary_heap::extract_min()
 	
 	temp.data = heap[0].data;
 	temp.key = heap[0].key;
-	heap.erase(heap.begin());
+	heap[0] = heap.back();
+	heap.pop_back();
 
 	min_heapify(0);
 
