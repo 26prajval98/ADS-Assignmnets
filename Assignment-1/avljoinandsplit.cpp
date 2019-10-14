@@ -11,6 +11,7 @@ typedef struct splt
     Node *tree2;
 } Split;
 
+// function to generate random entries for the AVL tree
 void random()
 {
     int A[200];
@@ -48,7 +49,7 @@ void random()
     file1.close();
     file2.close();
 }
-
+// function to AVLise a tree.*root is the root of the tree 
 Node *AVLise(Node *root, int data)
 {
     int balance = getBalance(root);
